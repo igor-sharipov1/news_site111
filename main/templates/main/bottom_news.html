@@ -1,0 +1,22 @@
+{% for bottom_elem in bottom_news %}
+			<div class="single_bottom_news">
+				<a href="{% url 'article-detail' bottom_elem.id %}">
+					{% if bottom_elem.image %}
+					<img src="{{ bottom_elem.image.url }}" alt="" class="first_bottom_news_image"/>
+					{% endif %}
+				<div class="black_bottom_background"></div>
+				<div class="white_gradient_background"></div>
+				<p class="bottom_block_text">
+					{{ bottom_elem.title }}
+			  </p>
+			  <div class="bottom_block_single_news_bottom_info">
+			  	<p class="bottom_block_single_news_type">
+					{{ bottom_elem.type }}
+			  	</p>
+			  	<p class="bottom_block_single_news_time">
+			  		{{ bottom_elem.published }}
+			  	</p>
+			  </div>
+			</a>
+			</div>
+			{% endfor %}

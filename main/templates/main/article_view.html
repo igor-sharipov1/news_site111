@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<title>Главная</title>
+	<link rel="shotcut icon" href="images/icon_head.png">
+	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+	<header class="header">
+		<div class="top_line">
+			<div class="main_menu">
+				<a href="{% url 'main' %}" >
+					<img src="{% static 'images/icon_header_logo.png' %}" alt="" class="logo_navigation">
+				</a>
+				<div class="search_box">
+					{% block search %}
+					<form method="post" class="Vladik">
+						{% csrf_token %}
+						{{ form.search_title }}
+						<button type="submit" class="magnifier_button">
+							<img src="{% static 'images/magnifier_white.png' %}" class="magnifier_picture" alt="">
+						</button>
+					</form>
+					{% endblock %}
+				</div>
+				<ul class="menu_elements">
+					<li class="menu_finances">
+						<a href="{% url 'finances' %}" >Финансы</a>
+					</li >
+					<li class="menu_politics">
+						<a href="#" target="_blank">Политика</a>
+					</li >
+					<li class="menu_sport">
+						<a href="#" >Спорт</a>
+					</li >
+					<li class="menu_news">
+						<a href="#" >Новости</a>
+					</li >
+					<li class="menu_chelyabinsk">
+						<a href="#" >Челябинск</a>
+					</li >
+					<li class="menu_profile">
+						<a href="#sign_in" >COVID-19</a>
+					</li >
+				</ul>
+			</div>
+		</div>
+	</header>
+
+
+	<div class="page_content">
+		{% block content %}
+		<article>
+			<h1>{{ article.title }}</h1>
+			{% if article.image %}
+			<p class="article_text"><img src="{{ article.image.url }}" alt="" class="article_image">
+				{% endif %}
+			{{ article.content }}
+			</p>
+		</article>
+		{% endblock %}
+
+
+	</div>
+</div>
+
+	<footer class="footer">
+		<div class="bottom_line">
+			<div class="footer_info">
+				<p class="footer_site_info">
+				© Novosti — главные новости России и мира, погода, акции, валюты
+				<br>
+				 и другие полезные сервисы
+				</p>
+				<div class="footer_social">
+						<a href="#">
+							<img src="{% static 'images/facebook_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/instagram_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/vk_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/youtube_logo_white.png' %}" alt=""  class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/twitch_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/tiktok_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+				</div>
+			</div>
+			<hr class="footer_white_line"/>
+			<div class="other_info">
+				<a href="" class="single_other_info">
+					<p>О нас</p>
+				</a>
+				<a href="" class="single_other_info">
+					<p>Помощь</p>
+				</a>
+				<a href="" class="single_other_info">
+					<p>Вакансии</p>
+				</a>
+				<a href="" class="single_other_info">
+					<p>Реклама</p>
+				</a>
+				<a href="" class="single_other_info">
+					<p>Поддержка</p>
+				</a>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+
+<script src="script.js"></script>
+</body>
+</html>

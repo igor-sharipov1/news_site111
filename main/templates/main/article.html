@@ -1,0 +1,248 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<title>Главная</title>
+	<link rel="shotcut icon" href="images/icon_head.png">
+	<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div id="sign_in">
+	<div class="dark_page_background">
+		<div class="sign_in_page">
+			<p class="authorization">Авторизация</p>
+			<a href="#main_page">
+				<span class="close"></span>
+			</a>
+			<div class="sign_in_ways">
+				<div class="email_sign_in">			
+					<p>С помощью почты</p>			
+					<div class="input_info">
+						<input type="text" class="enter_account_info" placeholder="Почта">
+						<div class="password">
+							<input type="password" class="enter_account_info" placeholder="Пароль" >
+						</div>
+						<div class="remember_me">
+							<input type="checkbox" class="remember_me_check">
+							<p>Запомнить меня</p>
+							<a href="https://vk.com/id285782891" class="forgot_password">Забыли пароль?</a>
+						</div>
+						<button class="log_in_button">
+							Вход
+						</button>
+					</div>
+				</div>
+				<div class="other_sign_in">
+					<p>Другие способы</p>
+					<div class="auth_grid">
+						<a href="#">
+							<img src="images/vk_logo_colored.png" alt="" class="auth_social_logo">
+						</a>
+						<a href="#">
+							<img src="images/tiktok_logo_colored.png" alt="" class="auth_social_logo">
+						</a>
+						<a href="#">
+							<img src="images/google_logo_colored.png" alt="" class="auth_social_logo">
+						</a>
+						<a href="#">
+							<img src="images/telegram_logo_colored.png" alt="" class="auth_social_logo">
+						</a>
+						<a href="#">
+							<img src="images/facebook_logo_colored.png" alt="" class="auth_social_logo">
+						</a>
+						<a href="#">
+							<img src="images/odnoklassniki_logo_colored.png" alt="" class="auth_social_logo">
+						</a>
+					</div>
+				</div>
+			</div>
+			<a href="#registration" class="no_account_text">
+				<p>Нет аккаунта? Зарегистрируйтесь</p>
+			</a>
+		</div>
+	</div>
+</div>
+
+<div id="registration">
+	<div class="dark_page_background">
+		<div class="registration_page">
+			<p class="authorization">Регистрация</p>
+			<a href="#main_page">
+				<span class="close"></span>
+			</a>
+			<input type="text" class="registration_form" placeholder="Почта">
+			<input type="text" class="registration_form" placeholder="Логин">
+			<div class="password">
+				<input type="password" class="registration_form" placeholder="Пароль">			
+			</div>
+			<div class="password">
+				<input type="password" class="registration_form" placeholder="Повторите пароль">
+			</div>
+			<button class="registration_button">
+				Зарегистрироваться
+			</button>
+			<a href="#sign_in"  class="no_account_text">
+				<p>У меня уже есть аккаунт</p>
+			</a>
+		</div>
+	</div>
+</div>
+
+	<header class="header"> 
+		<div class="top_line">
+			<div class="main_menu">				
+				<a href="file:///C:/Users/User/Desktop/site/index.html" >	
+					<img src="{% static 'images/icon_header_logo.png' %}" alt="" class="logo_navigation">
+				</a>	
+				<div class="search_box">			
+					<input type="text" class="search_text" placeholder="Искать">			
+					<img src="{% static 'images/magnifier_white.png' %}" alt="" class="magnifier_picture">
+				</div>
+				<ul class="menu_elements">					
+					<li class="menu_finances">
+						<a href="finances_page.html" >Финансы</a>
+					</li >
+					<li class="menu_politics">
+						<a href="#" target="_blank">Политика</a>
+					</li >
+					<li class="menu_sport">
+						<a href="#" >Спорт</a>
+					</li >
+					<li class="menu_news">
+						<a href="#" >Новости</a>
+					</li >
+					<li class="menu_chelyabinsk">
+						<a href="#" >Челябинск</a>
+					</li >
+					<li class="menu_profile">
+						<a href="#sign_in" >Профиль</a>
+					</li >
+				</ul>
+			</div>
+		</div>
+	</header>
+
+
+	<div class="page_content">
+		{% block content %}
+		{% for elem in news %}
+		<article>
+			<h1>{{ elem.title }}</h1>
+			{% if elem.image %}
+			<p class="article_text"><img src="{{ elem.image.url }}" alt="" class="article_image">
+				{% endif %}
+			{{ elem.content }}
+			</p>
+
+		</article>
+		{% endfor %}
+		{% endblock %}
+
+<div class="comments">
+		<h3>Комментарии</h3>
+		<div class="black_line_comments"></div>
+		<textarea placeholder="Введите текст комментария"></textarea>
+		<div class="button_to_publish">
+			<button class="publish_button">Опубликовать</button>
+		</div>
+		<div class="user_comments">
+			<div class="gray_line_comments"></div>
+			<div class="user_comment">
+				<div class="user_info">
+					<img src="images/user_avatar.jpg" alt="" class="user_avatar">
+					<div class="nickname">Moderator
+						<div class="moderator_comment">
+							<p>Модератор</p>
+						</div>
+					</div>
+				</div>
+				<p class="text_comment">Первое, что нужно сделать – аккуратно отделить желток от белка. Ветераны кухни умеют делать это ловко перекладывая желток из одной половинки яичной скорлупы в другую. Новичкам лучше воспользоваться специальной ложечкой.
+
+	Для каждого желтка лучше приготовить отдельную емкость, а белки выливаем в общую миску. Когда с этими манипуляциями будет покончено, достаем блендер или миксер (а может вы умеете делать это вручную?) и взбиваем белки до тех пор, пока они не станут пышной однородной пеной.
+
+	Пока разогревается духовка, застелите противень пергаментом или фольгой. Если вы подготовили гренки, выложите их на небольшом расстоянии друг от друга на пергамент и аккуратно положите пару столовых ложек взбитого яйца на каждую. Если нет, яйцо выкладываем прямо на пергамент. В центр каждой «кучки» аккуратно помещаем желток. Посыпаем всю конструкцию сыром, солью и специями. Тут главное не переборщить – взбитое яйцо может опасть под непосильной тяжестью топинга.
+
+	Отправляем наши «гнезда» в духовку на 15 минут. Готовое блюдо положить на большую тарелку украсить зеленью, добавить овощи, поджаренный бекон и есть с таким видом, словно вы не в ногинской девятиэтажке, а в кофейне на Рю дэ Револи в центре Парижа…</p>
+			</div>
+		</div>
+		<div class="user_comments">
+			<div class="gray_line_comments"></div>
+			<div class="user_comment">
+				<div class="user_info">
+					<img src="images/user_avatar.jpg" alt="" class="user_avatar">
+					<div class="nickname">User
+						
+					</div>
+				</div>
+				<p class="text_comment">Кушанья, приготовленные своими руками с любовью и заботой, – безусловно, вне конкуренции, и утолять ими голод намного полезнее и приятнее. Но за неимением времени на домашнюю стряпню хорошо бы узнать, как вкусно и сытно приготовить покупные пельмени из магазина, сколько варить их и как подавать. Чтобы полуфабрикат превратился в шедевр кулинарии, достойный восхищения, нужно нечто большее, чем литр воды, несколько горошков перца и пучок зелени.
+
+	Любой студент, обитающий в общежитии, и холостяк «со стажем» знает, как в домашних условиях приготовить покупные магазинные пельмени. Однако далеко не всегда то, что в результате варки оказывается на тарелке, возбуждает аппетит.
+
+	Чтобы не пришлось в очередной раз заглушать чувство голода бесформенным месивом мясной начинки и разварившегося (или недоваренного) теста, предлагаем несколько дельных советов, как вкусно отварить пельмешки из магазина, чтоб и самим с удовольствием полакомиться, и друзей угостить.</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<footer class="footer">
+		<div class="bottom_line">
+			<div class="footer_info">
+				<p class="footer_site_info">
+				© Novosti — главные новости России и мира, погода, акции, валюты
+				<br>
+				 и другие полезные сервисы
+				</p>
+				<div class="footer_social">
+						<a href="#">
+							<img src="{% static 'images/facebook_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/instagram_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/vk_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/youtube_logo_white.png' %}" alt=""  class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/twitch_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+						<a href="#">
+							<img src="{% static 'images/tiktok_logo_white.png' %}"  alt="" class="footer_social_logo">
+						</a>
+				</div>
+			</div>
+			<hr class="footer_white_line"/>
+			<div class="other_info">
+				<a href="" class="single_other_info">
+					<p>О нас</p>
+				</a>
+				<a href="" class="single_other_info">
+					<p>Помощь</p>
+				</a>
+				<a href="" class="single_other_info">
+					<p>Вакансии</p>
+				</a>
+				<a href="" class="single_other_info">
+					<p>Реклама</p>
+				</a>
+				<a href="" class="single_other_info">
+					<p>Поддержка</p>
+				</a>
+			</div>
+		</div>
+	</footer>
+
+
+
+
+	
+<script src="script.js"></script>
+</body>
+</html>
